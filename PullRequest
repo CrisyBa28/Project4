@@ -1,0 +1,37 @@
+### Pull Request Process
+
+## Creating a Pull Request 
+
+1. **Branching**: Ensure your changes are made in a feature or bugfix branch. 
+
+2. **Committing Changes**: Commit changes with descriptive commit messages. 
+
+3. **Push Your Branch**:     bash
+
+   git push -u origin your-branch-name
+
+4. **Open a Pull Request**:     - Go to the "Pull Requests" tab on the repository.    - Click "New Pull Request".    - Select your branch as the source and the `develop` branch as the destination.    - Add a title and description to your pull request.
+
+5. **Linking Issues**: Mention any related issues (e.g., "Fixes #123"). 
+
+6. **Assign Reviewers**: Assign appropriate team members as reviewers.  
+
+
+## Criteria for Review  
+
+- **Code Quality**: Adhere to coding standards and style guidelines. 
+
+- **Functionality**: Ensure changes work as intended; no breaking changes. 
+
+- **Documentation**: Document new functionality and update relevant project documentation. 
+
+- **Testing**: Ensure all tests pass locally and in the CI pipeline. 
+
+- **Performance**: Changes should not degrade performance. 
+
+- **Security**: Review for potential security vulnerabilities. 
+
+- **Clarity of Pull Request**: Provide a clear description and context for changes.
+
+
+
