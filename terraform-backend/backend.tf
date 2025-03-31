@@ -55,12 +55,6 @@ resource "aws_dynamodb_table" "luit-tf-backend-locks" {
     name = "LockID"
     type = "S"
   }
-  
-  tags = {
-    Name        = "luit-tf-backend-locks"
-    Environment = "Management"
-    ManagedBy   = "Terraform"
-  }
 }
 
 # Output the bucket details
