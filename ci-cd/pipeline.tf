@@ -7,6 +7,8 @@ resource "aws_codepipeline" "terraform_pipeline" {
     type     = "S3"
   }
   
+  # Define the stages of the pipeline
+  # Each stage can have multiple actions
   stage {
     name = "Source"
     
@@ -18,6 +20,8 @@ resource "aws_codepipeline" "terraform_pipeline" {
       version          = "1"
       output_artifacts = ["source_output"]
       
+      # Configuration for the source action
+      # This example uses a GitHub connection    
       configuration = {
         ConnectionArn    = aws_codestarconnections_connection.github.arn
         FullRepositoryId = "CrisyBa28/Project4"
@@ -25,7 +29,8 @@ resource "aws_codepipeline" "terraform_pipeline" {
       }
     }
   }
-  
+  ################# Build stage using CodeBuild #######################################################
+  ################# This stage will build the code and run tests using CodeBuild #######################
   stage {
     name = "Build"
     
@@ -44,6 +49,8 @@ resource "aws_codepipeline" "terraform_pipeline" {
     }
   }
   
+  ################# Deploy stage for development environment #######################################################
+  ################# This stage will deploy the code to the development environment #######################
   stage {
     name = "Deploy_Dev"
     
@@ -62,23 +69,26 @@ resource "aws_codepipeline" "terraform_pipeline" {
     }
   }
 
-  stage {
-    name = "Approval"
+  ################## Briana Rice  ###################################################
+  ######################### Manual Approval stage for production deployment ###################################################
+  ################## This stage will send a notification to the specified SNS topic for manual approval################
   
-    action {
-      name     = "Approval"
-      category = "Approval"
-      owner    = "AWS"
-      provider = "Manual"
-      version  = "1"
-    
-      configuration = {
-        CustomData      = "Please review and approve deployment to production"
-        NotificationArn = aws_sns_topic.approval_notification.arn
-      }
-    }
-  }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ######################### Production deployment stage ###################################################
+  ################## This stage will deploy the code to the production environment after approval ################
   stage {
     name = "Deploy_Prod"
   
