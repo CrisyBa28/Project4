@@ -72,20 +72,25 @@ resource "aws_codepipeline" "terraform_pipeline" {
   ################## Briana Rice  ###################################################
   ######################### Manual Approval stage for production deployment ###################################################
   ################## This stage will send a notification to the specified SNS topic for manual approval################
-  
+  stage {
+  name = "Approval_Prod"
 
+  action {
+    name            = "ManualApproval"
+    category        = "Approval"
+    owner           = "AWS"
+    provider        = "Manual"
+    version         = "1"
 
+    configuration = {
+      NotificationArn = aws_sns_topic.approval_notification.arn
+      CustomData      = "Please review the changes before approving for Production."
+    }
 
-
-
-
-
-
-
-
-
-
-
+    # run_order controls the sequence of actions in this stage,
+    run_order = 1
+  }
+}
 
   ######################### Production deployment stage ###################################################
   ################## This stage will deploy the code to the production environment after approval ################
